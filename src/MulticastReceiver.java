@@ -21,13 +21,12 @@ public class MulticastReceiver {
     }
 
     public String getData() throws IOException {
-        while (true) {
-            DatagramPacket packet = new DatagramPacket(data, data.length);
-            multicast.receive(packet);
-            System.out.println("Meddelande från " + packet.getAddress().getHostAddress() + " " + LocalDateTime.now());
-            String message = new String(packet.getData(), 0, packet.getLength());
-            return message;
-        }
+        DatagramPacket packet = new DatagramPacket(data, data.length);
+        multicast.receive(packet);
+        System.out.println("Meddelande från " + packet.getAddress().getHostAddress() + " " + LocalDateTime.now());
+        String message = new String(packet.getData(), 0, packet.getLength());
+        return message;
+
     }
 
 }

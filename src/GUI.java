@@ -21,6 +21,7 @@ public class GUI extends JFrame implements ActionListener {
     JTextField sendText = new JTextField(50);
     JScrollBar vertical = scrollPane.getVerticalScrollBar();
     MulticastSender sender;
+    public static boolean isRunning = true;
 
     public GUI(MulticastReceiver receiver, MulticastSender sender)
             throws UnknownHostException, SocketException, IOException {
@@ -37,7 +38,7 @@ public class GUI extends JFrame implements ActionListener {
         panel1.add(sendText);
         sendText.addActionListener(this);
 
-        while (true) {
+        while (isRunning) {
             textArea.append(receiver.getData() + "\n");
             revalidate();
             repaint();

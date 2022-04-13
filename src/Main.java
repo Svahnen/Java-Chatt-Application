@@ -5,5 +5,6 @@ public class Main {
         MulticastSender sender = new MulticastSender();
         MulticastReceiver receiver = new MulticastReceiver();
         GUI giu = new GUI(receiver, sender);
+
     }
 }
