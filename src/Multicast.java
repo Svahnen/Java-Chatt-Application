@@ -26,7 +26,6 @@ public class Multicast {
         System.out.println("Meddelande från " + packet.getAddress().getHostAddress() + " " + LocalDateTime.now());
         String message = new String(packet.getData(), 0, packet.getLength());
         return message;
-
     }
 
     public void sendMessage(String message) throws IOException {
