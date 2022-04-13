@@ -15,12 +15,12 @@ import java.awt.event.ActionEvent;
 public class GUI extends JFrame implements ActionListener {
     Multicast multicast;
     String message = "";
-    JTextArea textArea = new JTextArea(20, 50);
+    public static JTextArea textArea = new JTextArea(20, 50);
     JPanel panel1 = new JPanel();
     JScrollPane scrollPane = new JScrollPane(textArea);
     JTextField sendText = new JTextField(50);
     JScrollBar vertical = scrollPane.getVerticalScrollBar();
-    public static boolean isRunning = true;
+    Listen listen;
 
     public GUI(Multicast multicast)
             throws UnknownHostException, SocketException, IOException {
@@ -36,11 +36,6 @@ public class GUI extends JFrame implements ActionListener {
         panel1.add(sendText);
         sendText.addActionListener(this);
 
-        while (isRunning) {
-            textArea.append(multicast.getData() + "\n");
-            revalidate();
-            repaint();
-        }
     }
 
     public void actionPerformed(ActionEvent e) {

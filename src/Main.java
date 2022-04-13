@@ -4,7 +4,9 @@ public class Main {
         System.out.println("Receiver started");
         // MulticastSender sender = new MulticastSender();
         Multicast multicast = new Multicast();
+        Listen listen = new Listen(multicast);
         GUI giu = new GUI(multicast);
+        listen.start();
 
     }
 }
