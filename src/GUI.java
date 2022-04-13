@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -15,7 +16,9 @@ import java.awt.event.ActionEvent;
 public class GUI extends JFrame implements ActionListener {
     Multicast multicast;
     String message = "";
-    public static JTextArea textArea = new JTextArea(20, 50);
+    public static JTextArea textArea = new JTextArea(18, 50);
+    JTextField nameField = new JTextField("Anonymous", 20);
+    JButton connectionButton = new JButton("Disconnect");
     JPanel panel1 = new JPanel();
     JScrollPane scrollPane = new JScrollPane(textArea);
     JTextField sendText = new JTextField(50);
@@ -32,6 +35,8 @@ public class GUI extends JFrame implements ActionListener {
         setVisible(true);
 
         add(panel1);
+        panel1.add(nameField);
+        panel1.add(connectionButton);
         panel1.add(scrollPane);
         panel1.add(sendText);
         sendText.addActionListener(this);
@@ -43,7 +48,7 @@ public class GUI extends JFrame implements ActionListener {
             if (!sendText.getText().equals("")) {
                 try {
                     System.out.println("Send text: " + sendText.getText());
-                    multicast.sendMessage(sendText.getText());
+                    multicast.sendMessage(nameField.getText() + ": " + sendText.getText());
                     sendText.setText("");
                     vertical.setValue(vertical.getMaximum());
                 } catch (IOException e1) {
