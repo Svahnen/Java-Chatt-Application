@@ -6,27 +6,35 @@ import java.net.MulticastSocket;
 import java.net.NetworkInterface;
 import java.time.LocalDateTime;
 
-public class MulticastReceiver {
+public class Multicast {
     int port = 55555;
     String ip = "234.235.236.237";
     InetAddress iadr = InetAddress.getByName(ip);
     InetSocketAddress group = new InetSocketAddress(iadr, port);
     NetworkInterface netIf = NetworkInterface.getByName("wlp3s0");
-    MulticastSocket multicast;
-    byte[] data = new byte[256];
+    MulticastSocket socket;
 
-    public MulticastReceiver() throws IOException {
-        this.multicast = new MulticastSocket(port);
-        this.multicast.joinGroup(group, netIf);
+    public Multicast() throws IOException {
+        this.socket = new MulticastSocket(port);
+        this.socket.joinGroup(group, netIf);
     }
 
     public String getData() throws IOException {
+        byte[] data = new byte[256];
         DatagramPacket packet = new DatagramPacket(data, data.length);
-        multicast.receive(packet);
+        socket.receive(packet);
         System.out.println("Meddelande från " + packet.getAddress().getHostAddress() + " " + LocalDateTime.now());
         String message = new String(packet.getData(), 0, packet.getLength());
         return message;
 
+    }
+
+    public void sendMessage(String message) throws IOException {
+        byte[] data = new byte[256];
+        data = message.getBytes();
+        DatagramPacket packet;
+        packet = new DatagramPacket(data, data.length, iadr, port);
+        socket.send(packet);
     }
 
 }

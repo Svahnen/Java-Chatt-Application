@@ -13,20 +13,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GUI extends JFrame implements ActionListener {
-    MulticastReceiver receiver;
+    Multicast multicast;
     String message = "";
     JTextArea textArea = new JTextArea(20, 50);
     JPanel panel1 = new JPanel();
     JScrollPane scrollPane = new JScrollPane(textArea);
     JTextField sendText = new JTextField(50);
     JScrollBar vertical = scrollPane.getVerticalScrollBar();
-    MulticastSender sender;
     public static boolean isRunning = true;
 
-    public GUI(MulticastReceiver receiver, MulticastSender sender)
+    public GUI(Multicast multicast)
             throws UnknownHostException, SocketException, IOException {
-        this.receiver = receiver;
-        this.sender = sender;
+        this.multicast = multicast;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(580, 380);
@@ -39,7 +37,7 @@ public class GUI extends JFrame implements ActionListener {
         sendText.addActionListener(this);
 
         while (isRunning) {
-            textArea.append(receiver.getData() + "\n");
+            textArea.append(multicast.getData() + "\n");
             revalidate();
             repaint();
         }
@@ -50,7 +48,7 @@ public class GUI extends JFrame implements ActionListener {
             if (!sendText.getText().equals("")) {
                 try {
                     System.out.println("Send text: " + sendText.getText());
-                    sender.sendMessage(sendText.getText());
+                    multicast.sendMessage(sendText.getText());
                     sendText.setText("");
                     vertical.setValue(vertical.getMaximum());
                 } catch (IOException e1) {
