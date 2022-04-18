@@ -7,9 +7,9 @@ import java.net.NetworkInterface;
 import java.time.LocalDateTime;
 
 public class Multicast {
-    int port = 55555;
-    String ip = "234.235.236.237";
-    String networkInterfaceName = "wlp3s0";
+    int port = Integer.parseInt(GUI.portField.getText());
+    String ip = GUI.ipField.getText();
+    String networkInterfaceName = GUI.interfaceField.getText();
     InetAddress iadr = InetAddress.getByName(ip);
     InetSocketAddress group = new InetSocketAddress(iadr, port);
     NetworkInterface netIf = NetworkInterface.getByName(networkInterfaceName);
