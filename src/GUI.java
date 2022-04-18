@@ -59,8 +59,10 @@ public class GUI extends JFrame implements ActionListener {
             }
         } else if (e.getSource() == connectionButton) {
             System.out.println("Disconnect button pressed");
-            multicast.close();
+            multicast.leave();
             listen.interrupt();
+            multicast = null;
+            sendText.removeActionListener(this);
         }
     }
 }
