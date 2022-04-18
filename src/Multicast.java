@@ -36,4 +36,12 @@ public class Multicast {
         socket.send(packet);
     }
 
+    public void close() {
+        try {
+            socket.leaveGroup(group, netIf);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -25,9 +25,10 @@ public class GUI extends JFrame implements ActionListener {
     JScrollBar vertical = scrollPane.getVerticalScrollBar();
     Listen listen;
 
-    public GUI(Multicast multicast)
+    public GUI(Multicast multicast, Listen listen)
             throws UnknownHostException, SocketException, IOException {
         this.multicast = multicast;
+        this.listen = listen;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(580, 380);
@@ -37,6 +38,7 @@ public class GUI extends JFrame implements ActionListener {
         add(panel1);
         panel1.add(nameField);
         panel1.add(connectionButton);
+        connectionButton.addActionListener(this);
         panel1.add(scrollPane);
         panel1.add(sendText);
         sendText.addActionListener(this);
@@ -55,6 +57,10 @@ public class GUI extends JFrame implements ActionListener {
                     e1.printStackTrace();
                 }
             }
+        } else if (e.getSource() == connectionButton) {
+            System.out.println("Disconnect button pressed");
+            multicast.close();
+            listen.interrupt();
         }
     }
 }

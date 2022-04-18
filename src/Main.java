@@ -4,7 +4,7 @@ public class Main {
         Multicast multicast = new Multicast();
         Listen listen = new Listen(multicast);
         listen.start();
-        GUI giu = new GUI(multicast);
+        GUI giu = new GUI(multicast, listen);
 
     }
 }
