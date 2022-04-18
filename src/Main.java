@@ -1,9 +1,8 @@
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Multicast multicast = new Multicast();
-        Listen listen = new Listen(multicast);
-        listen.start();
+        Multicast multicast = null;
+        Listen listen = null;
         GUI giu = new GUI(multicast, listen);
 
     }

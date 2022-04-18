@@ -9,9 +9,10 @@ import java.time.LocalDateTime;
 public class Multicast {
     int port = 55555;
     String ip = "234.235.236.237";
+    String networkInterfaceName = "wlp3s0";
     InetAddress iadr = InetAddress.getByName(ip);
     InetSocketAddress group = new InetSocketAddress(iadr, port);
-    NetworkInterface netIf = NetworkInterface.getByName("wlp3s0");
+    NetworkInterface netIf = NetworkInterface.getByName(networkInterfaceName);
     MulticastSocket socket;
 
     public Multicast() throws IOException {
