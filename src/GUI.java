@@ -29,9 +29,9 @@ public class GUI extends JFrame implements ActionListener {
     JTextField sendText = new JTextField(50);
     JScrollBar vertical = scrollPane.getVerticalScrollBar();
 
-    JTextField nameField = new JTextField("Anonymous", 20);
+    JTextField nameField = new JTextField("Svahnen", 20);
     public static JTextField ipField = new JTextField("234.235.236.237", 22);
-    public static JTextField portField = new JTextField("55555", 22);
+    public static JTextField portField = new JTextField("12540", 22);
     public static JTextField interfaceField = new JTextField("wlp3s0", 22);
     JLabel nameLabel = new JLabel("Name");
     JLabel ipLabel = new JLabel("IP-address");
