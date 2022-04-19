@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
