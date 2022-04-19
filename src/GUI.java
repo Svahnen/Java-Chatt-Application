@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 
 public class GUI extends JFrame implements ActionListener {
     Multicast multicast;
+    Listen listen;
     String message = "";
     public static JTextArea textArea = new JTextArea(18, 50);
     JButton connectionButton = new JButton("Connect");
@@ -38,12 +39,7 @@ public class GUI extends JFrame implements ActionListener {
     JLabel portLabel = new JLabel("Port");
     JLabel interfaceLabel = new JLabel("Network interface");
 
-    Listen listen;
-
-    public GUI(Multicast multicast, Listen listen)
-            throws UnknownHostException, SocketException, IOException {
-        this.multicast = multicast;
-        this.listen = listen;
+    public GUI() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(580, 450);
@@ -96,7 +92,6 @@ public class GUI extends JFrame implements ActionListener {
                 textArea.setEditable(false);
                 multicast.leave();
                 listen.interrupt();
-                multicast = null;
                 sendText.removeActionListener(this);
                 nameField.setEditable(true);
                 ipField.setEditable(true);

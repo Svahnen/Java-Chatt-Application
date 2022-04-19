@@ -18,5 +18,9 @@ public class Listen extends Thread {
                 e.printStackTrace();
             }
         }
+        if (Thread.interrupted()) {
+            System.out.println("Listen stopped");
+            multicast.close();
+        }
     }
 }
