@@ -21,6 +21,7 @@ public class Listen extends Thread {
         if (Thread.interrupted()) {
             System.out.println("Listen stopped");
             multicast.close();
+            multicast = null;
         }
     }
 }
